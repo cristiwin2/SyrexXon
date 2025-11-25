@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SyrexXon — Be the Creator</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#ffb86b;--muted:#94a3b8;--glass: rgba(255,255,255,0.04)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,#061226 0%, #071427 60%);color:#e6eef8}
+    header{padding:28px 6vw;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#ff8a8a);display:flex;align-items:center;justify-content:center;font-weight:700;color:#072033}
+    h1{margin:0;font-size:20px}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-size:14px}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:40px;padding:40px 6vw;align-items:center}
+    .hero .lead{max-width:720px}
+    .kicker{display:inline-block;padding:6px 10px;background:var(--glass);border-radius:999px;color:var(--accent);font-weight:600;margin-bottom:14px}
+    h2{font-size:40px;margin:6px 0 12px}
+    p.lead-text{color:var(--muted);line-height:1.6}
+    .cta{margin-top:18px;display:flex;gap:12px}
+    .btn{padding:12px 18px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#ff8a8a);color:#072033}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    .mock{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;gap:12px}
+    .mock img{width:100%;height:300px;object-fit:cover;border-radius:10px}
+    .mock .info{display:flex;justify-content:space-between;align-items:center}
+    .price{font-weight:800}
+
+    .section{padding:36px 6vw}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card img{width:100%;height:260px;object-fit:cover;border-radius:8px}
+    .card h3{margin:10px 0 6px;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02)}
+
+    footer{padding:28px 6vw;border-top:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center}
+    .contact{color:var(--muted);font-size:14px}
+
+    /* modal */
+    .modal-bg{position:fixed;inset:0;background:rgba(2,6,23,0.7);display:none;align-items:center;justify-content:center;padding:24px}
+    .modal{background:#071226;padding:18px;border-radius:14px;max-width:760px;width:100%;border:1px solid rgba(255,255,255,0.04)}
+    .modal .row{display:flex;gap:14px}
+    .modal img{width:320px;height:320px;object-fit:cover;border-radius:10px}
+    .close{background:transparent;border:0;color:var(--muted);font-weight:700;cursor:pointer}
+
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}.mock img{height:220px}.modal img{width:100%;height:220px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">SX</div>
+      <div>
+        <h1>SyrexXon</h1>
+        <div style="color:var(--muted);font-size:13px">Be the creator not the consumer</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#products">Produse</a>
+      <a href="#about">Despre</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="lead">
+        <span class="kicker">Colecția de lansare</span>
+        <h2>Hanorace și tricouri cu atitudine</h2>
+        <p class="lead-text">Colecția SyrexXon pune accent pe design minimalist, mesaje motivaționale și materiale confortabile. Fiecare piesă este gândită pentru a deveni o declarație — nu doar un articol vestimentar.</p>
+        <div class="cta">
+          <button class="btn btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Vezi colecția</button>
+          <button class="btn btn-ghost" onclick="openContact()">Contact</button>
+        </div>
+      </div>
+
+      <aside class="mock">
+        <img src="/mnt/data/forest.jpg" alt="Produs exemplar">
+        <div class="info"><div><strong>Hanorac “Be the Creator”</strong><div style="color:var(--muted);font-size:13px">Negru / Alb • Mărimi S-XL</div></div><div class="price">120 lei</div></div>
+        <div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-primary" onclick="openModal(0)">Detalii</button><button class="btn btn-ghost" onclick="addToCart('Hanorac Be the Creator')">Adaugă în coș</button></div>
+      </aside>
+    </section>
+
+    <section id="products" class="section">
+      <h3 style="margin-top:0">Produse</h3>
+      <div class="grid">
+        <!-- product 1 -->
+        <div class="card">
+          <img src="/mnt/data/forest.jpg" alt="Hanorac Be the Creator">
+          <h3>Hanorac "Be the Creator"</h3>
+          <p>Material moale, imprimeu durabil. Croială relaxată, ideal pentru orice zi.</p>
+          <div class="meta"><div class="tag">Streetwear</div><div style="font-weight:800">120 lei</div></div>
+          <div style="margin-top:10px;display:flex;gap:8px"><button class="btn btn-primary" onclick="openModal(0)">Vezi</button><button class="btn btn-ghost" onclick="addToCart('Hanorac Be the Creator')">Cumpără</button></div>
+        </div>
+
+        <!-- product 2 -->
+        <div class="card">
+          <img src="/mnt/data/forest.jpg" alt="Tricou Creator">
+          <h3>Tricou "Creator"</h3>
+          <p>Tricou din bumbac premium, tăietură clasică și mesaj inspirațional pe spate.</p>
+          <div class="meta"><div class="tag">Casual</div><div style="font-weight:800">65 lei</div></div>
+          <div style="margin-top:10px;display:flex;gap:8px"><button class="btn btn-primary" onclick="openModal(1)">Vezi</button><button class="btn btn-ghost" onclick="addToCart('Tricou Creator')">Cumpără</button></div>
+        </div>
+
+        <!-- product 3 -->
+        <div class="card">
+          <img src="/mnt/data/forest.jpg" alt="Șapcă SyrexXon">
+          <h3>Șapcă SyrexXon</h3>
+          <p>Accesoriu minimalist, broderie discretă, potrivit pentru styling urban.</p>
+          <div class="meta"><div class="tag">Accesorii</div><div style="font-weight:800">45 lei</div></div>
+          <div style="margin-top:10px;display:flex;gap:8px"><button class="btn btn-primary" onclick="openModal(2)">Vezi</button><button class="btn btn-ghost" onclick="addToCart('Sapca SyrexXon')">Cumpără</button></div>
+        </div>
+
+        <!-- product 4 -->
+        <div class="card">
+          <img src="/mnt/data/forest.jpg" alt="Trening SyrexXon">
+          <h3>Trening SyrexXon</h3>
+          <p>Set confortabil, material călduros, ideal pentru layering în sezon rece.</p>
+          <div class="meta"><div class="tag">Sport</div><div style="font-weight:800">200 lei</div></div>
+          <div style="margin-top:10px;display:flex;gap:8px"><button class="btn btn-primary" onclick="openModal(3)">Vezi</button><button class="btn btn-ghost" onclick="addToCart('Trening SyrexXon')">Cumpără</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h3>Despre brand</h3>
+      <p style="color:var(--muted);max-width:780px">SyrexXon s-a născut din dorința de a combina designul modern cu mesaje care inspiră. Ne adresăm tinerilor creativi care vor să își exprime identitatea prin haine de calitate, cu un impact vizual clar și autentic.</p>
+    </section>
+
+    <section id="contact" class="section">
+      <h3>Contact</h3>
+      <p class="contact">Telefon: +40 728 945 310 • Email: syrexxen@gmail.com</p>
+      <p style="color:var(--muted);margin-top:8px">Adresă (pentru proiect): Str. Exemplu 10, București</p>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <strong>SyrexXon</strong> • Toate drepturile rezervate</div>
+    <div style="color:var(--muted)">Urmărește-ne pe Instagram • Facebook</div>
+  </footer>
+
+  <div id="modalBg" class="modal-bg" onclick="closeModal(event)">
+    <div class="modal" role="dialog" aria-modal="true" onclick="event.stopPropagation()">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong id="mTitle">Produs</strong><button class="close" onclick="closeModal()">Închide</button></div>
+      <div class="row">
+        <img id="mImg" src="/mnt/data/forest.jpg" alt="">
+        <div style="flex:1">
+          <h4 id="mName">Nume produs</h4>
+          <p id="mDesc" style="color:var(--muted)"></p>
+          <div style="margin-top:12px;font-weight:800" id="mPrice">120 lei</div>
+          <div style="margin-top:16px;display:flex;gap:8px"><button class="btn btn-primary" onclick="addToCart('Produs din modal')">Adaugă în coș</button><button class="btn btn-ghost" onclick="closeModal()">Închide</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      {name:'Hanorac "Be the Creator"', price:'120 lei', desc:'Material moale, imprimeu durabil. Croială relaxată.'},
+      {name:'Tricou "Creator"', price:'65 lei', desc:'Tricou bumbac premium, tăietură clasică, mesaj inspirațional.'},
+      {name:'Șapcă SyrexXon', price:'45 lei', desc:'Broderie discretă, design minimalist.'},
+      {name:'Trening SyrexXon', price:'200 lei', desc:'Material călduros, ideal pentru sezonul rece.'}
+    ];
+
+    function openModal(i){
+      const p = products[i];
+      document.getElementById('mImg').src = '/mnt/data/forest.jpg';
+      document.getElementById('mTitle').innerText = p.name;
+      document.getElementById('mName').innerText = p.name;
+      document.getElementById('mDesc').innerText = p.desc;
+      document.getElementById('mPrice').innerText = p.price;
+      document.getElementById('modalBg').style.display = 'flex';
+    }
+    function closeModal(e){
+      if(e && e.target && e.target.id!=='modalBg') return;
+      document.getElementById('modalBg').style.display = 'none';
+    }
+    function addToCart(name){
+      alert(name + ' a fost adăugat(ă) în coș (simulare proiect).');
+    }
+    function openContact(){
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+    }
+  </script>
+</body>
+</html>
